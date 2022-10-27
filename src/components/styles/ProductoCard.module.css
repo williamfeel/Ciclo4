@@ -1,0 +1,9 @@
+.productoCard {
+  list-style: none;
+  font-size: 1.5rem;
+}
+
+.productoImg{
+  border-radius: 20px;
+  background-color: azure;
+}

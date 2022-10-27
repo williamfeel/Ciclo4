@@ -1,0 +1,43 @@
+[
+  {
+    "id": 1,
+    "nombre": "Blue Jean",
+    "estado": "En stock",
+    "precio": 150000,
+    "cantidad": 3,
+    "imagen": "img/bluejean.png"
+  },
+  {
+    "id": 2,
+    "nombre": "Camisa",
+    "estado": "En stock",
+    "precio": 60000,
+    "cantidad": 5, 
+    "imagen": "img/camisa.png"
+  },
+  {
+    "id": 3,
+    "nombre": "Chaqueta",
+    "estado": "En stock",
+    "precio": 300000,
+    "cantidad": 10,
+    "imagen": "img/chaqueta.png"
+  },
+  {
+    "id": 4,
+    "nombre": "Zapatos",
+    "estado": "En stock",
+    "precio": 200000,
+    "cantidad": 1,
+    "imagen": "img/zapatos.png"
+  },
+  {
+    "id": 5,
+    "nombre": "Gorra",
+    "estado": "En stock",
+    "precio": 20000,
+    "cantidad": 1,
+    "imagen": "img/gorra.png"
+  }
+
+]

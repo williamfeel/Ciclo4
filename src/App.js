@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import { ProductosGrid } from "./components/ProductosGrid";
+import styles from "./App.module.css";
+import {Navbar}  from "./components/Navbar";
 
-function App() {
+export function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div>
+      <Navbar/>
+      <header>
+        <h1 className={styles.titulo}>Lista de Productos</h1>
       </header>
+      <main>
+        <ProductosGrid/>
+      </main>
     </div>
-  );
+  )
 }
-
-export default App;
