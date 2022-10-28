@@ -2,11 +2,11 @@ import styles from "./styles/ProductoCard.module.css";
 
 export function ProductoCard({dato}){
   return (
-  <li className = {styles.productoCard}>
-    <div>{dato.nombre}</div>
-    <div>{dato.estado}</div>
+  <li className = {styles.productoCard}>    
+    <p>{dato.estado}</p>
     <img className={styles.productoImg} src={dato.imagen} alt={dato.nombre}/>
-    <div>{dato.precio}</div>
+    <p>{dato.nombre} - ${dato.precio}</p>
+    <button className={styles.boton}>Agregar al carrito</button>
   </li>
   );
 }
