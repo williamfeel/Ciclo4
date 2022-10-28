@@ -9,6 +9,9 @@ import ventas from "./components/ventas";
 export function App() {
   let Component;
   switch (window.location.pathname) {
+    case "/":
+      Component = Presentacion
+      break;
     case "/home":
       Component = Presentacion
       break;
