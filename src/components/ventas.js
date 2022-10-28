@@ -1,22 +1,22 @@
 import datos from "./DatosPrueba.json";
 import {VentasProducto} from "./VentasProducto.js";
-import styles from "./styles/Ventas.module.css";
-import stylesTitulo from "./styles/Titulo.module.css";
+import styles2 from "./styles/Ventas.module.css";
+import styles from "../App.module.css";
 import {Navbar}  from "./Navbar";
 
 
 export const Ventas =() =>{
-  console.log(datos);
+  
   return (
     <>
     <div>
       <Navbar/>
       <header>
-        <h1 className={stylesTitulo.titulo}>Ventas</h1>
+        <h1 className={styles.titulo}>Ventas</h1>
       </header>
       <main>
       <br/>
-      <table className={styles.Tabla}>
+      <table className={styles2.Tabla}>
         <thead>
           <tr>
           <th>Id</th>
