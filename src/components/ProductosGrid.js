@@ -1,6 +1,6 @@
 import datos from "./DatosPrueba.json"
 import { ProductoCard } from "./ProductoCard.js";
-import styles from "./styles/ProductosGrid.module.css";
+import styles from "../styles/ProductosGrid.module.css";
 
 export const ProductosGrid =() =>{
   return (

@@ -1,6 +1,6 @@
 import datos from "./DatosPrueba.json";
 import {VentasProducto} from "./VentasProducto.js";
-import styles2 from "./styles/Ventas.module.css";
+import styles2 from "../styles/Ventas.module.css";
 import styles from "../App.module.css";
 import {Navbar}  from "./Navbar";
 

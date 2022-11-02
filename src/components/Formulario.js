@@ -1,5 +1,5 @@
 import { useState } from "react"
-import styles from "./styles/Formulario.module.css";
+import styles from "../styles/Formulario.module.css";
 
 export function Formulario(){
   const[nombre, setNombre]=useState("");

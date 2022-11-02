@@ -1,4 +1,4 @@
-import styles from "./styles/VentasProducto.module.css";
+import styles from "../styles/VentasProducto.module.css";
 
 export function VentasProducto ({vendido}) {
   return (
