@@ -2,6 +2,7 @@ import { ListaProductos } from "./components/ListaProductos.js";
 import { Presentacion } from "./components/Presentacion";
 import { ModificarProducto } from "./components/ModificarProducto.js";
 import { Ventas } from "./components/Ventas";
+import { Cart } from "./components/Cart";
 
 
 export function App() {
@@ -22,6 +23,9 @@ export function App() {
     case "/ventas":
       Component = Ventas
       break;
+      case "/Cart":
+        Component = Cart
+        break;
   
     default:
       break;
