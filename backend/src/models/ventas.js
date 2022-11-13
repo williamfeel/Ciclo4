@@ -1,11 +1,12 @@
-import mongoose, {Schema } from "mongoose";
+import mongoose, {Schema} from "mongoose";
 
 
 const ventaSchema = new mongoose.Schema(
   {
     cliente:{
       type: mongoose.Schema.Types.ObjectId,
-      ref: "usuarios"
+      ref: "usuarios",
+      trim: true
     },
     detalle:{
       type: Array,
@@ -20,6 +21,15 @@ const ventaSchema = new mongoose.Schema(
       required: true,
       trim: true
     },
+    total:{
+      type: Number,
+      required: true,
+      trim: true
+    },
+    estado:{
+      type: String,
+      default: "vigente"
+    }
   },
   {
     timestamps: true,
