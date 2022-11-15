@@ -18,7 +18,7 @@ export const Presentacion = () => {
         <p>Esta es una aplicación desarrollada por estudiantes Mintic - Udea. </p>
         <span>De click en el siguiente botón para continuar</span>
         <br></br>
-        <a href="/ListaProductos" className="btn btn-primary btn-sm">Ir a la tienda</a>
+        <a href="/Productos" className="btn btn-primary btn-sm">Ir a la tienda</a>
       </main>
     </div>
   );

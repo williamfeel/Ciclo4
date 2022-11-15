@@ -17,7 +17,7 @@ export const Ventas =() =>{
       </header>
       <main>
       <Container className="bg-white">
-        <Table striped bordered hover size="sm">
+        <Table>
         <thead>
           <tr style={{textAlign: "center"}}>
             <th>Fecha</th>

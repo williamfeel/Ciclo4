@@ -11,16 +11,16 @@ export function App() {
     case "/":
       Component = Presentacion
       break;
-    case "/home":
+    case "/Home":
       Component = Presentacion
       break;
-    case "/productos":
+    case "/Productos":
       Component = ListaProductos
       break;
     case "/Gestionar":
       Component = GestionarProducto
       break;
-    case "/ventas":
+    case "/Ventas":
       Component = Ventas
       break;
       case "/Cart":

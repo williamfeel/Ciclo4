@@ -13,7 +13,7 @@ export function ProductosGrid() {
         <Col key={dato.id} dato={dato}>
           <Card>
             <>
-            <Card.Img variant="top" src={dato.imagen} width={230} height={345} className={styles.productoImg}/>
+            <Card.Img variant="top" src={dato.imagen} weight= {230} height={345} className={styles.productoImg}/>
             <Card.Body className={styles.cardBodyTam}>
                 <Card.Title className={styles.productoCard}>{dato.nombre}</Card.Title>
                 <Card.Text className={styles.productoCard}>
