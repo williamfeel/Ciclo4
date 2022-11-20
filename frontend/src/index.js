@@ -4,10 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 import "./estilos.css";
-// import {ProductosGrid} from "./components/ProductosGrid.js";
-// import {Presentacion} from "./components/Presentacion.js";
-import {App} from "./App";
 
+import {App} from "./App";
 
 
 //Renderización 

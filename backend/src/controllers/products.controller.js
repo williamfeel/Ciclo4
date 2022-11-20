@@ -74,12 +74,12 @@ export const borrarProducto = async (req, res) => {
     const productoBorrado = await producto.findByIdAndDelete(req.params.id);
 
     if (!productoBorrado) {
-      return res.sendStatus(404);
+      return res.sendstatus(404);
     } else {
       if (productoBorrado.imagen.public_id) {
         await deleteImage(productoBorrado.imagen.public_id);
       }
-      return res.Status(204).json("Producto Eliminado");
+      return res.status(204).json("Producto Eliminado");
     }
   } catch (error) {
     return res.status(500).json({ msg: error.message });

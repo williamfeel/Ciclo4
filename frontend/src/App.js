@@ -3,9 +3,20 @@ import { Presentacion } from "./components/Presentacion";
 import { GestionarProducto } from "./components/GestionarProducto.js";
 import { Ventas } from "./components/Ventas";
 import { Cart } from "./components/Cart";
+import { useEffect } from "react"; //borrar luego
+import clienteAxios from "./config/axios.jsx"
 
 
 export function App() {
+  
+  useEffect(()=>{
+    const consultarPrueba = async () => {
+        const {data} = await clienteAxios("/productos")
+        console.log(data)
+    }
+    consultarPrueba();
+  },[])
+
   let Component;
   switch (window.location.pathname) {
     case "/":
@@ -31,11 +42,9 @@ export function App() {
       break;
   }
   return (
-    <div>
-      
+    <>
       <Component/>
-        {/* <ProductosGrid/> */}
-      
-    </div>
+    </>
+    
   )
 }
