@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Aviso from "../components/Aviso.js";
-import styles from "../styles/Formulario.module.css"
-import datos from "./DatosPrueba.json"
+import Aviso from "../Aviso.js";
+import styles from "../../styles/Formulario.module.css"
+import datos from "../DatosPrueba.json"
 
 
 export function Formulario() {

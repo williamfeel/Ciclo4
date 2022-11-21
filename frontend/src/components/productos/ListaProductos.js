@@ -1,5 +1,5 @@
-import {Navegacion}  from "./Navbar";
-import styles from "../styles/App.module.css";
+import {Navegacion}  from "../Navbar";
+import styles from "../../styles/App.module.css";
 import { ProductosGrid } from "./ProductosGrid.js";
 
 //Componente = es la base fundamental de react

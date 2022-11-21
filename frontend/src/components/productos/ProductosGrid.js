@@ -1,8 +1,8 @@
-import datos from "./DatosPrueba.json";
+import datos from "../DatosPrueba.json";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import styles from "../styles/ProductoCard.module.css";
+import styles from "../../styles/ProductoCard.module.css";
 import { Container } from "react-bootstrap";
 
 

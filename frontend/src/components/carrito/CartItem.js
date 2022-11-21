@@ -1,5 +1,5 @@
-import styles2 from "../styles/VentaCard.module.css";
-import styles from "../styles/ProductoCard.module.css";
+import styles2 from "../../styles/VentaCard.module.css";
+import styles from "../../styles/ProductoCard.module.css";
 import Card from "react-bootstrap/Card";
 
 export const CartItem = ({ producto, addToCart, remFromCart }) => {

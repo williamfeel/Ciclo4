@@ -1,7 +1,7 @@
-import datos from "./DatosPrueba.json";
+import datos from "../DatosPrueba.json";
 import Card from "react-bootstrap/Card";
 
-import styles2 from "../styles/VentaCard.module.css";
+import styles2 from "../../styles/VentaCard.module.css";
 import { CartItem } from "./CartItem.js";
 
 export const CartShopping = () => {

@@ -1,50 +1,38 @@
-import { ListaProductos } from "./components/ListaProductos.js";
-import { Presentacion } from "./components/Presentacion";
-import { GestionarProducto } from "./components/GestionarProducto.js";
-import { Ventas } from "./components/Ventas";
-import { Cart } from "./components/Cart";
-import { useEffect } from "react"; //borrar luego
-import clienteAxios from "./config/axios.jsx"
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+import { ListaProductos } from "./components/productos/ListaProductos.js";
+import { Presentacion } from "./components/Presentacion";
+import { GestionarProducto } from "./components/productos/GestionarProducto.js";
+import { Ventas } from "./components/ventas/Ventas.js";
+import { Cart } from "./components/carrito/Cart";
+import { useEffect } from "react"; //borrar luego
+import clienteAxios from "./config/axios.jsx";
+import Inicio from "./Layout/Inicio.js";
 
 export function App() {
-  
-  useEffect(()=>{
+  /* useEffect(()=>{
     const consultarPrueba = async () => {
         const {data} = await clienteAxios("/productos")
         console.log(data)
     }
     consultarPrueba();
-  },[])
+  },[]) */
 
-  let Component;
-  switch (window.location.pathname) {
-    case "/":
-      Component = Presentacion
-      break;
-    case "/Home":
-      Component = Presentacion
-      break;
-    case "/Productos":
-      Component = ListaProductos
-      break;
-    case "/Gestionar":
-      Component = GestionarProducto
-      break;
-    case "/Ventas":
-      Component = Ventas
-      break;
-      case "/Cart":
-        Component = Cart
-        break;
-  
-    default:
-      break;
-  }
   return (
-    <>
-      <Component/>
-    </>
-    
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Inicio />}>
+          <Route index element={<Presentacion />} />
+          <Route path="Home" element={<Presentacion />} />
+          <Route path="Productos" element={<ListaProductos />} />
+          <Route path="Gestionar" element={<GestionarProducto />} />
+          <Route path="Ventas" element={<Ventas />} />
+          <Route path="Productos" element={<ListaProductos />} />
+          <Route path="Cart" element={<Cart />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
+
+export default App;

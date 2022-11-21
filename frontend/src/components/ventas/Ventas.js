@@ -1,8 +1,8 @@
 import Table from 'react-bootstrap/Table';
-import datosVentas from "./DatosPruebaVentas.json";
+import datosVentas from "../DatosPruebaVentas.json";
 import {VentasProducto} from "./VentasProducto.js";
-import styles from "../styles/App.module.css";
-import {Navegacion}  from "./Navbar";
+import styles from "../../styles/App.module.css";
+import {Navegacion}  from "../Navbar";
 import { Container } from 'react-bootstrap';
 
 
