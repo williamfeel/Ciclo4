@@ -1,168 +1,122 @@
 import { useState } from "react";
-import Aviso from "../Aviso.js";
-import styles from "../../styles/Formulario.module.css"
-import datos from "../DatosPrueba.json"
+import clienteAxios from "../../config/axios.jsx";
+import { useEffect } from "react";
+import Table from "react-bootstrap/Table";
+import { Button } from "react-bootstrap";
+import { Modal } from "./Modal.js";
+import { useForm } from "react-hook-form";
 
 
 export function Formulario() {
-  const [id, setId] = useState("");
-  const [nombre, setNombre] = useState("");
-  const options = ["", "En stock", "Agotado"];
-  const [estado, setEstado] = useState(options[0]);
-  const [precio, setPrecio] = useState("");
-  const [cantidad, setCantidad] = useState("");
-  const [imagen, setImagen] = useState("");
-  
-  
+  const [productos, setProductos] = useState([]);
 
-  const [alerta, setAlerta] = useState({});
+  useEffect(() => {
+    const traerProductos = async () => {
+      try {
+        const { data } = await clienteAxios.get("/productos");
+        setProductos(data);
+      } catch (error) {
+        console.log("Error: " + error.message);
+      }
+    };
+    traerProductos();
+  }, []);
 
+  /*  const[objetivo, setObjetivo]=useState([])
+  const [nombre, setNombre]=useState('Lunes')
+  const [autor, setAutor]=useState('Lunes')
+  const [editorial, setEditorial]=useState('Lunes')
+  const [disponibles,setDisponibles]=useState('Lunes')
+  const [precio,setPrecio]=useState('Lunes')
+  const [imagen,setImagen]=useState('Lunes')
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  function selectProducto(e) {
+    
+    setNombre(e.target.value)
+    setAutor(e.target.value)
+    setEditorial(e.target.value)
+    setDisponibles(e.target.value)
+    setPrecio(e.target.value)
+    setImagen(e.target.value)
+  } */
 
-    if ([id, nombre, estado, precio, cantidad, imagen].includes("")) {
-      setAlerta({
-        msg: "todos lo campos son obligatorios",
-        error: true,
-      });
-      return;
-    } else {
-      setAlerta({
-        msg: "Información enviada exitosamente",
-      });
-      setId("");
-      setNombre("");
-      setEstado("");
-      setPrecio("");
-      setCantidad("");
-      setImagen("");
-    }
-  };
-
-  const { msg } = alerta;
+  const { register, handleSubmit } = useForm();
 
   return (
-    <div className="container">   
-      <div className="row">
-        <div className="col-4">
-        <div className={styles.Formulario}>
-          <div className="form-outline">
-            <input type="search" id="form1" className="form-control" />
-            <label className={styles.Centrar} htmlFor="form1" text-justify="center">Buscar por id</label>
+    <div className="container-fluid">
+      <div className="bg-white">
+        <div style={{ textAlign: "center" }}>
+          <div>
+            <Button type="button" variant="dark" data-bs-toggle="modal"  data-bs-target="#exampleModal">
+              AGEGAR UN PRODUCTO A LA BASE DE DATOS
+              <img src={"img/add.png"} alt="icono" width={30} height={30} /> 
+            </Button>
+            <Modal register={register} handleSubmit={handleSubmit}/>
+            
           </div>
-          <button type="button" className="btn btn-primary">
-            <i className="fas fa-search"></i>
-          </button>
-        </div>
-        <br/>
-        <div>
-          <select className="form-select">
-            <option>Buscar por nombre</option>
-            {datos.map((dato) =>(
-              <option key={dato.id} dato={dato}>{dato.nombre}</option>
-            ))}
-          </select>
-        </div>
-        </div>
-        <div className="col-4">
-          <form  className={styles.Formulario} onSubmit={handleSubmit}>
-            <fieldset>
-              <legend className={styles.Centrar}>Ingrese los datos</legend>
-              <div className="contenedor-campos">
-                <div className="form-group">
-                  <label className={styles.Centrar} htmlFor="id">Id: </label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    id="id"
-                    name="id"
-                    placeholder="id"
-                    value={id}
-                    onChange={(e) => setId(e.target.value)}
-                  />
-                </div>
-                <div className="form-group">
-                  <label className={styles.Centrar} htmlFor="nombre">Nombre: </label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    id="nombre"
-                    name="nombre"
-                    placeholder="nombre"
-                    value={nombre}
-                    onChange={(e) => setNombre(e.target.value)}
-                  />
-                </div>
-                <div className="form-group">
-                  <label className={styles.Centrar} htmlFor="estado">Estado: </label>
-                  <select className="form-select" aria-label="Default select example" 
-                    value={estado}
-                    onChange={(e) => setEstado(e.target.value)}
+          <Table striped bordered hover size="sm">
+            <thead>
+              <tr style={{ textAlign: "center" }}>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Autor</th>
+                <th>Editorial</th>
+                <th>Disp.</th>
+                <th>Precio</th>
+                <th>Imagen</th>
+                <th>Borrar</th>
+                <th>Editar</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {productos.map((pcts) => (
+                <tr style={{ textAlign: "center" }} key={pcts._id} pcts={pcts}>
+                  <td>{pcts._id}</td>
+                  <td>{pcts.nombre}</td>
+                  <td>{pcts.autor}</td>
+                  <td>{pcts.editorial}</td>
+                  <td>#{pcts.disponibles}</td>
+                  <td>${pcts.precio}</td>
+                  <td>
+                    <a href={pcts.imagen.url}>
+                      Img
+                    </a>
+                  </td>
+                  <td>
+                    <button
+                      style={{ border: "none" }}
+                      //data-bs-toggle="modal"
+                      //data-bs-target={`#id${vendido.factura}`}
                     >
-                    {options.map((value) => (
-                    <option value={value} key={value}>
-                      {value}
-                    </option>))}
-                                
-                  </select>
-                </div>
-                <div className="form-group">
-                  <label className={styles.Centrar} htmlFor="precio">Precio: </label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    id="precio"
-                    name="precio"
-                    placeholder="precio"
-                    value={precio}
-                    onChange={(e) => setPrecio(e.target.value)}
-                  />
-                </div>
-                <div className="form-group">
-                  <label className={styles.Centrar} htmlFor="cantidad">Cantidad: </label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    id="cantidad"
-                    name="cantidad"
-                    placeholder="cantidad"
-                    value={cantidad}
-                    onChange={(e) => setCantidad(e.target.value)}
-                  />
-                </div>
-                <div className="form-group">
-                  <label className={styles.Centrar} htmlFor="img">Imagen url: </label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    id="imagen"
-                    name="imagen"
-                    placeholder="imagen" 
-                    value={imagen}
-                    onChange={(e) => setImagen(e.target.value)}
-                  />
-                </div>
-                
-                {/* operador ternario && */}
-                {msg && <Aviso alerta={alerta} setAlerta={setAlerta} />}
-                <br/>
-                <div className="d-grid gap-2">
-                  <button type="submit" defaultValue="Modificar" className="btn btn-primary">
-                    Modificar
-                  </button>
-                  <button type="submit" defaultValue="Crear" className="btn btn-primary">
-                    Crear
-                  </button>
-                </div>     
-              </div>
-            </fieldset>
-          </form>
-        </div>   
-        <div className="col-4">
-          <img src={imagen} className="img-fluid" alt="Responsive image"/>        
+                      <img
+                        src={"img/borrar.png"}
+                        alt="icono"
+                        width={30}
+                        height={30}
+                      />
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      style={{ border: "none" }}
+                      //data-bs-toggle="modal"
+                      //data-bs-target={`#id${vendido.factura}`}
+                    >
+                      <img
+                        src={"img/editar.png"}
+                        alt="icono"
+                        width={30}
+                        height={30}
+                      />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
         </div>
       </div>
-  </div>
+    </div>
   );
 }
