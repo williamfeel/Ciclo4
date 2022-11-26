@@ -51,7 +51,10 @@ export const actualizarProducto = async (req, res) => {
     );
     let imagen= req.files;
     if (imagen) {
-      await deleteImage(actualizarPro.imagen.public_id);
+      if(actualizarPro.imagen.public_id){
+        await deleteImage(actualizarPro.imagen.public_id);        
+      }      
+      
       const result = await uploadImage(req.files.imagen.tempFilePath);
       await fs.remove(req.files.imagen.tempFilePath);
       
@@ -62,7 +65,7 @@ export const actualizarProducto = async (req, res) => {
       await actualizarPro.save(); 
       return res.status(204).json(actualizarPro);
     }
-    return res.status(204).json(actualizarPro);
+    
      
     } catch (error) {
       return res.status(500).json({ message: error.message });

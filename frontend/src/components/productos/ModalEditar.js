@@ -1,42 +1,50 @@
 import swal from "sweetalert2";
-
+import { useState } from "react";
 import styles from "../../styles/Formulario.module.css";
-
-//import { useState } from "react";
 import clienteAxios from "../../config/axios.jsx";
+import { useForm } from "react-hook-form";
 
+const onSubmit = (pto) => {
 
-
-const onSubmit = (pcto) => {
-  console.log(pcto);
-
-  
 
   const formData = new FormData();
-  formData.append("nombre", pcto.nombre);
-  formData.append("autor", pcto.autor);
-  formData.append("editorial", pcto.editorial);
-  formData.append("disponibles", pcto.disponibles);
-  formData.append("precio", pcto.precio);
-  formData.append("imagen", pcto.file[0]);
+  formData.append("_id", pto._id);
+  formData.append("nombre", pto.nombre);
+  formData.append("autor", pto.autor);
+  formData.append("editorial", pto.editorial);
+  formData.append("disponibles", pto.disponibles);
+  formData.append("precio", pto.precio);
+  formData.append("imagen", pto.file[0]);
 
-  const crearProducto = async (formData) => {
+  
+  const actualizarProducto = async (formData) => {
     try {
-      await clienteAxios.post("/productos", formData);
+      
+      await clienteAxios.put(`/productos/${formData.get("_id")}`, formData);
       swal.fire("producto creado correctamente!!!");
     } catch (error) {
       console.log(error.message);
     }
   };
-  crearProducto(formData);
+  actualizarProducto(formData);
 };
 
-export const Modal = ({register, handleSubmit}) => {
+export const ModalEditar = ({ id, pcto }) => {
+  const [actnonombre, setActnombre] = useState(pcto.nombre);
+  const [actautor, setActautor] = useState(pcto.autor);
+  const [acteditorial, setActeditorial] = useState(pcto.editorial);
+  const [actdisponibles, setActdisponibles] = useState(pcto.disponibles);
+  const [actprecio, setActprecio] = useState(pcto.precio);
+  const [actimagen, setActimagen] = useState([]);
+  
+
+  const { register, handleSubmit } = useForm();
+
   return (
     <div>
       <div
         className="modal fade"
-        id="exampleModal"
+        id={id}
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -45,8 +53,8 @@ export const Modal = ({register, handleSubmit}) => {
           <div className="modal-content">
             <div className="modal-header">
               <div className={styles.Formulario}>
-                <h1 className="modal-title fs-5" id="exampleModalLabel">
-                  Agregar un Producto a la Base de Datos
+                <h1 className="modal-title fs-5" id="exampleModalLabel2">
+                  Actualizando Producto...
                 </h1>
               </div>
               <button
@@ -57,10 +65,27 @@ export const Modal = ({register, handleSubmit}) => {
               ></button>
             </div>
             <div className="modal-body">
-              <form className={styles.Formulario} onSubmit={handleSubmit(onSubmit)}>
+              <form
+                className={styles.Formulario}
+                onSubmit={handleSubmit(onSubmit)}
+              >
                 <fieldset>
-                  <legend className={styles.Centrar}>Ingrese los datos</legend>
+                  <legend className={styles.Centrar}></legend>
                   <div className="contenedor-campos">
+                  <div className="form-group">
+                      <label className={styles.Centrar} htmlFor="_id">
+                        Id: 
+                      </label>
+                      <input
+                        className="form-control"
+                        readOnly={true}
+                        type="text"
+                        id="_id"
+                        name="_id"
+                        value={pcto._id}
+                        {...register("_id")}
+                      />
+                    </div>
                     <div className="form-group">
                       <label className={styles.Centrar} htmlFor="nombre">
                         Nombre:
@@ -71,7 +96,9 @@ export const Modal = ({register, handleSubmit}) => {
                         id="nombre"
                         name="nombre"
                         placeholder="nombre"
+                        value={actnonombre}
                         {...register("nombre")}
+                        onChange={(ev) => setActnombre(ev.target.value)}
                       />
                     </div>
                     <div className="form-group">
@@ -81,10 +108,12 @@ export const Modal = ({register, handleSubmit}) => {
                       <input
                         className="form-control"
                         type="text"
-                        id="autor"
+                        id="nombre"
                         name="autor"
                         placeholder="autor"
+                        value={actautor}
                         {...register("autor")}
+                        onChange={(ev) => setActautor(ev.target.value)}
                       />
                     </div>
                     <div className="form-group">
@@ -97,7 +126,9 @@ export const Modal = ({register, handleSubmit}) => {
                         id="editorial"
                         name="editorial"
                         placeholder="editorial"
+                        value={acteditorial}
                         {...register("editorial")}
+                        onChange={(ev) => setActeditorial(ev.target.value)}
                       />
                     </div>
 
@@ -111,7 +142,9 @@ export const Modal = ({register, handleSubmit}) => {
                         id="precio"
                         name="precio"
                         placeholder="precio"
+                        value={actprecio}
                         {...register("precio")}
+                        onChange={(ev) => setActprecio(ev.target.value)}
                       />
                     </div>
                     <div className="form-group">
@@ -124,12 +157,21 @@ export const Modal = ({register, handleSubmit}) => {
                         id="disponibles"
                         name="disponibles"
                         placeholder="disponibles"
+                        value={actdisponibles}
                         {...register("disponibles")}
+                        onChange={(ev) => setActdisponibles(ev.target.value)}
                       />
                     </div>
                     <div className="form-group">
                       <label className={styles.Centrar} htmlFor="img">
-                        Suba la imagen:
+                        Si desea cambiar la imagen, suba la nueva imagen:
+                        <a
+                          href={pcto.imagen.url}
+                          rel="noreferrer"
+                          target="_blank"
+                        >
+                          imagen actual
+                        </a>
                       </label>
                       <input
                         className="form-control"
@@ -138,7 +180,10 @@ export const Modal = ({register, handleSubmit}) => {
                         id="imagen"
                         name="imagen"
                         placeholder="imagen"
+                        value={actimagen}
                         {...register("file")}
+                        onChange={(ev) => setActimagen(ev.target.value)}
+                        
                       />
                     </div>
 
@@ -153,13 +198,6 @@ export const Modal = ({register, handleSubmit}) => {
                         className="btn btn-primary"
                       >
                         Modificar
-                      </button>
-                      <button
-                        type="submit"
-                        value="Crear"
-                        className="btn btn-primary"
-                      >
-                        Crear
                       </button>
                     </div>
                   </div>

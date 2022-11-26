@@ -3,9 +3,10 @@ import clienteAxios from "../../config/axios.jsx";
 import { useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import { Button } from "react-bootstrap";
-import { Modal } from "./Modal.js";
+import { ModalCrear } from "./ModalCrear.js";
 import { useForm } from "react-hook-form";
-
+import { ModalEditar } from "./ModalEditar.js";
+import { ModalBorrar } from "./ModalBorrar.js";
 
 export function Formulario() {
   const [productos, setProductos] = useState([]);
@@ -20,25 +21,7 @@ export function Formulario() {
       }
     };
     traerProductos();
-  }, []);
-
-  /*  const[objetivo, setObjetivo]=useState([])
-  const [nombre, setNombre]=useState('Lunes')
-  const [autor, setAutor]=useState('Lunes')
-  const [editorial, setEditorial]=useState('Lunes')
-  const [disponibles,setDisponibles]=useState('Lunes')
-  const [precio,setPrecio]=useState('Lunes')
-  const [imagen,setImagen]=useState('Lunes')
-
-  function selectProducto(e) {
-    
-    setNombre(e.target.value)
-    setAutor(e.target.value)
-    setEditorial(e.target.value)
-    setDisponibles(e.target.value)
-    setPrecio(e.target.value)
-    setImagen(e.target.value)
-  } */
+  }, [productos]);
 
   const { register, handleSubmit } = useForm();
 
@@ -47,12 +30,16 @@ export function Formulario() {
       <div className="bg-white">
         <div style={{ textAlign: "center" }}>
           <div>
-            <Button type="button" variant="dark" data-bs-toggle="modal"  data-bs-target="#exampleModal">
+            <Button
+              type="button"
+              variant="dark"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
               AGEGAR UN PRODUCTO A LA BASE DE DATOS
-              <img src={"img/add.png"} alt="icono" width={30} height={30} /> 
+              <img src={"img/add.png"} alt="icono" width={30} height={30} />
             </Button>
-            <Modal register={register} handleSubmit={handleSubmit}/>
-            
+            <ModalCrear register={register} handleSubmit={handleSubmit} />
           </div>
           <Table striped bordered hover size="sm">
             <thead>
@@ -77,39 +64,51 @@ export function Formulario() {
                   <td>{pcts.autor}</td>
                   <td>{pcts.editorial}</td>
                   <td>#{pcts.disponibles}</td>
-                  <td>${pcts.precio}</td>
                   <td>
-                    <a href={pcts.imagen.url}>
+                    ${new Intl.NumberFormat("en-EN").format(`${pcts.precio}`)}
+                  </td>
+                  <td>
+                    <a href={pcts.imagen.url} target="_blank" rel="noreferrer">
                       Img
                     </a>
                   </td>
                   <td>
-                    <button
-                      style={{ border: "none" }}
-                      //data-bs-toggle="modal"
-                      //data-bs-target={`#id${vendido.factura}`}
-                    >
-                      <img
-                        src={"img/borrar.png"}
-                        alt="icono"
-                        width={30}
-                        height={30}
-                      />
-                    </button>
+                    <div>
+                      <Button
+                        type="button"
+                        variant="secondary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#ModalDeBorrado"
+                        style={{ border: "none" }}
+                      >
+                        <img
+                          src={"img/borrar.png"}
+                          alt="icono"
+                          width={30}
+                          height={30}
+                        />
+                      </Button>
+                    </div>
+                    <ModalBorrar idPcto={pcts._id} />
                   </td>
                   <td>
-                    <button
-                      style={{ border: "none" }}
-                      //data-bs-toggle="modal"
-                      //data-bs-target={`#id${vendido.factura}`}
-                    >
-                      <img
-                        src={"img/editar.png"}
-                        alt="icono"
-                        width={30}
-                        height={30}
-                      />
-                    </button>
+                    <div>
+                      <Button
+                        type="button"
+                        variant="primary"
+                        data-bs-toggle="modal"
+                        data-bs-target={`#id${pcts._id}`}
+                        style={{ border: "none" }}
+                      >
+                        <img
+                          src={"img/editar.png"}
+                          alt="icono"
+                          width={30}
+                          height={30}
+                        />
+                      </Button>
+                    </div>
+                    <ModalEditar id={`id${pcts._id}`} pcto={pcts} />
                   </td>
                 </tr>
               ))}
