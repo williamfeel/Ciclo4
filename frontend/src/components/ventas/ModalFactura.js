@@ -1,5 +1,5 @@
 import Table from 'react-bootstrap/Table';
-export const Modal = ({factura, detalle, NoFactura}) => {
+export const ModalFactura = ({factura, detalle, NoFactura}) => {
   return(
     <div>
       <div className="modal fade" id={factura} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -13,18 +13,18 @@ export const Modal = ({factura, detalle, NoFactura}) => {
               <Table>
                 <thead>
                   <tr style={{textAlign: "center"}}>
-                    <th>id Pto</th>
-                    <th>nombre</th>
                     <th>cantidad</th>  
+                    <th>nombre</th>
+                    <th>precio</th>
                     <th>subtotal</th>
                   </tr>
                 </thead>
                 <tbody>
-                {detalle.map((detal)=>(
-                  <tr key={detal.subtotal}>
-                    <td>{detal.idProducto}</td>
-                    <td>{detal.nombre}</td>
-                    <td>{detal.cantidadVta}</td>
+                {detalle.map((detal, index)=>(
+                  <tr key={index} detal={detal}>
+                    <td>{detal.cantidad}</td>
+                    <td>{detal.inf.nombre}</td>
+                    <td>${new Intl.NumberFormat("en-EN").format(`${detal.inf.precio}`)}</td>
                     <td>{detal.subtotal}</td>
                   </tr>
                 ))}

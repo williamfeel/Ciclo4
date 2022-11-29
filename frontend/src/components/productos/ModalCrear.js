@@ -1,10 +1,6 @@
 import swal from "sweetalert2";
-
 import styles from "../../styles/Formulario.module.css";
-
-//import { useState } from "react";
 import clienteAxios from "../../config/axios.jsx";
-
 
 
 const onSubmit = (pcto) => {
@@ -31,7 +27,12 @@ const onSubmit = (pcto) => {
   crearProducto(formData);
 };
 
-export const ModalCrear = ({register, handleSubmit}) => {
+
+
+export const ModalCrear = ({ register, handleSubmit}) => {
+
+
+  
   return (
     <div>
       <div
@@ -57,7 +58,10 @@ export const ModalCrear = ({register, handleSubmit}) => {
               ></button>
             </div>
             <div className="modal-body">
-              <form className={styles.Formulario} onSubmit={handleSubmit(onSubmit)}>
+              <form
+                className={styles.Formulario}
+                onSubmit={handleSubmit(onSubmit)}
+              >
                 <fieldset>
                   <legend className={styles.Centrar}>Ingrese los datos</legend>
                   <div className="contenedor-campos">

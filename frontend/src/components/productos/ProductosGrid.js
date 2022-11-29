@@ -3,14 +3,18 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import styles from "../../styles/ProductoCard.module.css";
 import { Container } from "react-bootstrap";
-import clienteAxios from "../../config/axios.jsx";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import clienteAxios from "../../config/axios";
+import { useContext } from "react";
+import CartContext from "../context/CartProvider.js"
 
+const useProductos = () => useContext(CartContext);
 
 export function ProductosGrid() {
-  
   const [productos, setProductos] = useState([]);
+  
+  const {agregarAlCarro} = useProductos();
+
 
   useEffect(() => {
     const traerProductos = async () => {
@@ -44,12 +48,10 @@ export function ProductosGrid() {
                 <Card.Text className={styles.productoCard}>
                   {producto.estado}: {producto.disponibles}
                   <br />
-                  Precio: ${producto.precio}
+                  Precio: $
+                  {new Intl.NumberFormat("en-EN").format(`${producto.precio}`)}
                 </Card.Text>
-                {/* <a href="/Cart" className="btn btn-primary btn-sm">
-                  Ir al carrito
-                </a> */}
-                <button type="button" className="btn btn-warning btn-sm">
+                <button type="button" className="btn btn-warning btn-sm" onClick={()=>agregarAlCarro(producto)}>
                   Agregra al carrito
                 </button>
               </Card.Body>

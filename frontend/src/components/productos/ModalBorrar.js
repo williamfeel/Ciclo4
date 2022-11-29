@@ -1,29 +1,27 @@
 import styles from "../../styles/Formulario.module.css";
-import { Button } from "react-bootstrap";
+
 import clienteAxios from "../../config/axios";
 
+export const ModalBorrar = ({ id, ptoId }) => {
+  
+  
 
-
-export const ModalBorrar = ({ idPcto }) => {
-
-
-  const borrarProducto = async (id) => {
-    console.log(id)
+  const borrarProducto = async (pto) => {
+    
+    
     try {
-      await clienteAxios.delete(`/productos/${id}`);
+      await clienteAxios.delete(`/productos/${pto.ptoId}`);
       
     } catch (error) {
       console.log(error.message);
     }
   };
 
-
-
   return (
     <div>
       <div
         className="modal fade"
-        id="ModalDeBorrado"
+        id={id}
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -46,26 +44,28 @@ export const ModalBorrar = ({ idPcto }) => {
             <div className="modal-body">
               <p>Estas seguro?</p>
               <p>Estas accion no se podra revertir!</p>
+              <p></p>
               <span className={styles.Botones}>
-                <Button
+                <button
+                  data-bs-dismiss="modal"
                   type="button"
-                  variant="primary"
+                  className="btn btn-secondary"
                   style={{ border: "none" }}
                 >
                   Canelar
-                </Button>
+                </button>
               </span>
               <span>
-                <Button
+                <button
                   type="button"
-                  variant="warning"
+                  className="btn btn-warning"
                   style={{ border: "none" }}
-                  onClick={()=>borrarProducto(idPcto)}
+                  onClick ={() => borrarProducto({ptoId})}
                   data-bs-dismiss="modal"
                   aria-label="Close"
                 >
                   Confirmar
-                </Button>
+                </button>
               </span>
             </div>
           </div>

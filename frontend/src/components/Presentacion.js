@@ -1,4 +1,5 @@
 import { Navegacion } from "./Navbar.js";
+import {Link} from "react-router-dom"
 import styles from "../styles/App.module.css";
 
 
@@ -26,9 +27,9 @@ export const Presentacion = () => {
               </p>
               <span>De click en el siguiente botón para continuar</span>
               <br></br>
-              <a href="/Productos" className="btn btn-primary btn-sm">
+              <Link to="/Productos" className="btn btn-primary btn-sm">
                 Ir a la tienda
-              </a>
+              </Link>
             </div>
             <div className="col-8">
              <img src={"img/Comic.png"} alt="img" />

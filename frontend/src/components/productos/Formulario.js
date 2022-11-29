@@ -2,7 +2,6 @@ import { useState } from "react";
 import clienteAxios from "../../config/axios.jsx";
 import { useEffect } from "react";
 import Table from "react-bootstrap/Table";
-import { Button } from "react-bootstrap";
 import { ModalCrear } from "./ModalCrear.js";
 import { useForm } from "react-hook-form";
 import { ModalEditar } from "./ModalEditar.js";
@@ -25,12 +24,14 @@ export function Formulario() {
 
   const { register, handleSubmit } = useForm();
 
+
+
   return (
     <div className="container-fluid">
       <div className="bg-white">
         <div style={{ textAlign: "center" }}>
           <div>
-            <Button
+            <button
               type="button"
               variant="dark"
               data-bs-toggle="modal"
@@ -38,7 +39,7 @@ export function Formulario() {
             >
               AGEGAR UN PRODUCTO A LA BASE DE DATOS
               <img src={"img/add.png"} alt="icono" width={30} height={30} />
-            </Button>
+            </button>
             <ModalCrear register={register} handleSubmit={handleSubmit} />
           </div>
           <Table striped bordered hover size="sm">
@@ -74,11 +75,10 @@ export function Formulario() {
                   </td>
                   <td>
                     <div>
-                      <Button
+                      <button
                         type="button"
-                        variant="secondary"
                         data-bs-toggle="modal"
-                        data-bs-target="#ModalDeBorrado"
+                        data-bs-target={`#idpto${pcts._id}`}
                         style={{ border: "none" }}
                       >
                         <img
@@ -87,13 +87,13 @@ export function Formulario() {
                           width={30}
                           height={30}
                         />
-                      </Button>
+                      </button>
                     </div>
-                    <ModalBorrar idPcto={pcts._id} />
+                    <ModalBorrar id={`idpto${pcts._id}`} ptoId={pcts._id}/>
                   </td>
                   <td>
                     <div>
-                      <Button
+                      <button
                         type="button"
                         variant="primary"
                         data-bs-toggle="modal"
@@ -106,7 +106,7 @@ export function Formulario() {
                           width={30}
                           height={30}
                         />
-                      </Button>
+                      </button>
                     </div>
                     <ModalEditar id={`id${pcts._id}`} pcto={pcts} />
                   </td>
