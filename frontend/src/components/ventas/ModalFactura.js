@@ -14,7 +14,7 @@ export const ModalFactura = ({factura, detalle, NoFactura}) => {
                 <thead>
                   <tr style={{textAlign: "center"}}>
                     <th>cantidad</th>  
-                    <th>nombre</th>
+                    <th>nombre del pto</th>
                     <th>precio</th>
                     <th>subtotal</th>
                   </tr>

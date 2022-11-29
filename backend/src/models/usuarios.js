@@ -28,11 +28,7 @@ const usuarioSchema = new mongoose.Schema({
     required: null,
     trim: true,
   },
-  web: {
-    type: String,
-    required: true,
-    trim: true,
-  },
+  
   token: {
     type: String,
     default: generarId(),

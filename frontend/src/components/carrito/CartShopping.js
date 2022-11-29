@@ -6,9 +6,28 @@ import CartContext from "../context/CartProvider";
 import { Link } from "react-router-dom";
 import { ModalCompra } from "./ModalCompra.js";
 
+
+
+
+
 const useProductos = () => useContext(CartContext);
 
 export const CartShopping = () => {
+
+
+
+  /* const crearVenta = async (carro, cantidad, subtotal) => {
+    try {
+      await clienteAxios.post("/productos", formData);
+      swal.fire("producto creado correctamente!!!");
+      //clienteAxios.get("/productos")
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+  crearcrearVenta(carro, cantidad, subtotal);
+}; */
+
   const { cart } = useProductos();
 
   return (

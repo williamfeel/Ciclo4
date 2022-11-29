@@ -19,13 +19,13 @@ export function Navegacion() {
     <div className="sticky-top">
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand as={Link} to="/Home">
+          <Navbar.Brand as={Link} to="/">
             4-Devs
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link as={Link} to="/Productos">
+              <Nav.Link as={Link} to="/User">
                 Lista de Productos
               </Nav.Link>
               <Nav.Link as={Link} to="/Gestionar">
