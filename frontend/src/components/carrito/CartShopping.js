@@ -56,7 +56,7 @@ export const CartShopping = () => {
                   <div className="row" style={{ textAlign: "center" }}>
                     <div className="col-6">
                       <Link
-                        to={"/Productos"}
+                        to={"/User"}
                         type="button"
                         className="btn btn-success"
                       >

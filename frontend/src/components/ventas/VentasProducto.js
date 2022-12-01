@@ -46,7 +46,7 @@ export function VentasProducto() {
                   data-bs-target={`#id${venta._id}`}
                 >
                   <img
-                    src={"img/LogoFac.png"}
+                    src={"/img/LogoFac.png"}
                     alt="icono"
                     width={30}
                     height={30}

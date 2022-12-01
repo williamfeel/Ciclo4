@@ -1,4 +1,5 @@
 import Container from "react-bootstrap/Container";
+import Image from "react-bootstrap/Image";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
@@ -28,25 +29,23 @@ export function Navegacion() {
               <Nav.Link as={Link} to="/User">
                 Lista de Productos
               </Nav.Link>
-              <Nav.Link as={Link} to="/Gestionar">
+              <Nav.Link as={Link} to="/Admin/Gestionar">
                 Gestionar Producto
               </Nav.Link>
-              <Nav.Link as={Link} to="/Ventas">
+              <Nav.Link as={Link} to="/Admin/Ventas">
                 Lista de Ventas
               </Nav.Link>
-              <Nav.Link as={Link} to="/Cart">
-                <img
-                  src={"img/cart.png"}
-                  alt="icono"
-                  width={40}
-                  height={40}
-                />
+              <Nav.Link as={Link} to="/User/Cart">
+                <Image src={"/img/cart.png"} alt="icon" width={40} height={40} />
                 <span className="text-white bg-black rounded p-0.8">
                   {cuentaCarritoIcon}
                 </span>
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
+          <Navbar.Brand as={Link} to="/">
+            Cerrar Sesion
+          </Navbar.Brand>
         </Container>
       </Navbar>
     </div>

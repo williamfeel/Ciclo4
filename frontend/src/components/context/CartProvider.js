@@ -5,27 +5,6 @@ const CartContext = createContext();
 const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
-  /* const initialState = {
-    cart: {
-      cartItems: []
-    }
-  }
-  
-  function reducer(state, action){
-    
-    switch (action.type){
-      case "AGREGAR_AL_CARRO":{
-        const newItem = action.payload
-        const existItem = state.cart.cartItems.find(item=>item._id===newItem._id)
-
-        const cartItems = existItem ? state.cart.cartItems.map(item=>item._id===existItem._id ? newItem:item) : [...state.cart.cartItems, newItem]
-        
-        return {...state, cart:{...state.cart, cartItems}}
-      }
-      default: return state;
-    }
-
-  } */
 
   const agregarAlCarro = (pto) => {
     const existePto = cart.find((element) => element._id === pto._id);

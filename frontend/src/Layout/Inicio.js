@@ -1,9 +1,8 @@
 import { Outlet } from "react-router-dom"
 
-const LayoutAuth = () => {
+export const Inicio = () => {
   return (
     <Outlet />    
   )
 }
 
-export default LayoutAuth

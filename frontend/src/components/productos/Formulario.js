@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { ModalEditar } from "./ModalEditar.js";
 import { ModalBorrar } from "./ModalBorrar.js";
 
+
 export function Formulario() {
   const [productos, setProductos] = useState([]);
 
@@ -31,14 +32,14 @@ export function Formulario() {
       <div className="bg-white">
         <div style={{ textAlign: "center" }}>
           <div>
-            <button
+            <button        
+              className="btn btn-dark"  
               type="button"
-              variant="dark"
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
             >
               AGEGAR UN PRODUCTO A LA BASE DE DATOS
-              <img src={"img/add.png"} alt="icono" width={30} height={30} />
+              <img src={"/img/add.png"} alt="icono" width={30} height={30} />
             </button>
             <ModalCrear register={register} handleSubmit={handleSubmit} />
           </div>
@@ -82,7 +83,7 @@ export function Formulario() {
                         style={{ border: "none" }}
                       >
                         <img
-                          src={"img/borrar.png"}
+                          src={"/img/borrar.png"}
                           alt="icono"
                           width={30}
                           height={30}
@@ -101,7 +102,7 @@ export function Formulario() {
                         style={{ border: "none" }}
                       >
                         <img
-                          src={"img/editar.png"}
+                          src={"/img/editar.png"}
                           alt="icono"
                           width={30}
                           height={30}

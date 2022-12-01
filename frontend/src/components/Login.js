@@ -1,8 +1,58 @@
-import { Link } from "react-router-dom";
 import styles from "../styles/Formulario.module.css";
-import styles2 from "../styles/Titulo.module.css"
+import styles2 from "../styles/Titulo.module.css";
+import AuthContext from "./context/AuthProvider";
+import { Link, useNavigate } from "react-router-dom";
+
+import { useState } from "react";
+
+import {Aviso} from "./Aviso"
+import clienteAxios from "../config/axios";
+import { useContext } from "react";
+
+const useAuth = () => useContext(AuthContext);
+
+
 
 export const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [alerta, setAlerta] = useState({});
+
+  const { setAuth } = useAuth();
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("Validacion");
+    if ([email, password].includes("")) {
+      setAlerta({ msg: "Todos los Campos son Obligatorios", error: true });
+      return;
+    }
+
+    // Auntenticar al usuario
+
+    try {
+      const { data } = await clienteAxios.post("user/login", {
+        email,
+        password,
+      });
+
+      localStorage.setItem("token", data.token);
+      console.log(data);
+      // Validar la redireccion
+      setAuth(data);
+      navigate("User/Perfil");
+    } catch (error) {
+      setAlerta({
+        msg: error.response.data.msg,
+        error: true,
+      });
+    }
+  };
+
+  const { msg } = alerta;
+
   return (
     <div>
       <br />
@@ -11,8 +61,8 @@ export const Login = () => {
       <div className="container">
         <div className="row">
           <div className="col-6">
-            <form className={styles.Borde}>
-              {/* {msg && <Alerta alerta={alerta} />} */}
+            <form className={styles.Borde} onSubmit={handleSubmit}>
+              {msg && <Aviso alerta={alerta} setAlerta={setAlerta} />}
               <div className="form-group">
                 <label htmlFor="email">Email</label>
                 <input
@@ -21,8 +71,8 @@ export const Login = () => {
                   type="email"
                   id="email"
                   placeholder="ej: correo@correo.com"
-                  /* value={email}
-                onChange={(e) => setEmail(e.target.value)} */
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div className="form-group">
@@ -32,8 +82,8 @@ export const Login = () => {
                   type="password"
                   id="password"
                   placeholder="*********"
-                  /* value={password}
-                onChange={(e) => setPassword(e.target.value)} */
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
               <br />
@@ -64,7 +114,7 @@ export const Login = () => {
             </form>
           </div>
           <div className="col-6">
-            <img src={"img/Comic.png"} alt="img" />
+            <img src={"/img/Comic.png"} alt="img" />
           </div>
         </div>
       </div>
